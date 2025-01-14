@@ -17,10 +17,14 @@ type TUserinfoState = {
 	authorityList: any[]
 	token: string
 	refreshToken: string
+}
+
+type TActions = {
 	setUser: (user: TUserinfoState['user']) => void
 	setAuthorityList: (authorityList: any[]) => void
 	setToken: (token: string) => void
 	setRefreshToken: (refreshToken: string) => void
+	resetUserinfo: () => void
 }
 
 const initialUserinfoState: TUserinfoState = {
@@ -39,17 +43,16 @@ const initialUserinfoState: TUserinfoState = {
 	},
 	authorityList: [],
 	token: '',
-	refreshToken: '',
-	setUser: () => {},
-	setAuthorityList: () => {},
-	setToken: () => {},
-	setRefreshToken: () => {}
+	refreshToken: ''
 }
 
-export const useUserinfoStore = create<TUserinfoState>(set => ({
+export const useUserinfoStore = create<TUserinfoState & TActions>(set => ({
 	...initialUserinfoState,
 	setUser: user => set(_ => ({ user })),
 	setAuthorityList: authorityList => set(_ => ({ authorityList })),
 	setToken: token => set(_ => ({ token })),
-	setRefreshToken: refreshToken => set(_ => ({ refreshToken }))
+	setRefreshToken: refreshToken => set(_ => ({ refreshToken })),
+	resetUserinfo: () => {
+		set(initialUserinfoState)
+	}
 }))

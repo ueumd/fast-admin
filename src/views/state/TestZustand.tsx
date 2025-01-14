@@ -9,6 +9,8 @@ const TestZustand = React.memo(() => {
 	const setUser = useUserinfoStore(state => state.setUser)
 	const setToken = useUserinfoStore(state => state.setToken)
 
+	const resetUserinfo = useUserinfoStore(state => state.resetUserinfo)
+
 	const updateUserProfile = () => {
 		setUser({
 			id: '1',
@@ -48,6 +50,10 @@ const TestZustand = React.memo(() => {
 			</p>
 			<Button type='primary' onClick={updateUserProfile} style={{ marginRight: '20px' }}>
 				Update User Info
+			</Button>
+
+			<Button type='primary' onClick={resetUserinfo} style={{ marginRight: '20px' }}>
+				resetUserinfo
 			</Button>
 		</div>
 	)
